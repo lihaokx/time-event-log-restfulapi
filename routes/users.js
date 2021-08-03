@@ -10,10 +10,6 @@ const router = express.Router();
 router.use(bodyParser.json());
 /* GET users listing. */
 
-
-
-
-
 router.route('/')
 .get( authenticate.verifyOrdinaryUser, authenticate.verifyAdmin, function(req, res, next) {
   User.find({})
@@ -24,8 +20,6 @@ router.route('/')
   }, (err) => next(err))
   .catch((err) => next(err)); 
 });
-
-
 
 // password is stored as hash and salt
 router.post('/signup', (req, res, next) => {

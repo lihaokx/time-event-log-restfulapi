@@ -12,7 +12,7 @@ router.use(bodyParser.json());
 
 router.route('/')
 .get( function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'Express'});
 })
 
 .post( authenticate.verifyUser, (req, res, next) => {
