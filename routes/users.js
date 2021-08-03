@@ -32,20 +32,18 @@ router.post('/signup', (req, res, next) => {
   User.register(new User({username: req.body.username}), 
     req.body.password, (err, user) => {
     if(err) {
+      console.log("err: ", err.message)
       res.statusCode = 500;
       res.setHeader('Content-Type', 'application/json');
-      res.json({err: err});
+      res.json({success: false, status: err.message});
+      // res.send(err.message)
     }
     else {
-      if (req.body.firstname)
-        user.firstname = req.body.firstname;
-      if (req.body.lastname)
-        user.lastname = req.body.lastname;
         user.save((err, user) => {
           if (err) {
             res.statusCode = 500;
             res.setHeader('Content-Type', 'application/json');
-            res.json({err: err});
+            res.json({success: false, status: err.message});
             return ;
           }
           passport.authenticate('local')(req, res, () => {
@@ -68,13 +66,16 @@ router.post('/signup', (req, res, next) => {
 router.post('/login',  (req, res, next) => {
 
   passport.authenticate('local', (err, user, info) => {
+    console.log("err: ", err)
+    console.log("user: ", user)
+    console.log("info: ", info)
     if (err)
       return next(err);
-
     if (!user) {
       res.statusCode = 401;
       res.setHeader('Content-Type', 'application/json');
       res.json({success: false, status: 'Login Unsuccessful!', err: info});
+      return ;
     }
     req.logIn(user, (err) => {
       if (err) {
@@ -82,7 +83,6 @@ router.post('/login',  (req, res, next) => {
         res.setHeader('Content-Type', 'application/json');
         res.json({success: false, status: 'Login Unsuccessful!', err: 'Could not log in user!'});          
       }
-
       var token = authenticate.getToken({_id: req.user._id});
       res.statusCode = 200;
       res.setHeader('Content-Type', 'application/json');

@@ -7,8 +7,13 @@ var User = new Schema({
     admin:   {
         type: Boolean,
         default: false
+    } }
+    
+    , {
+        timestamps: true
     }
-});
+);
+ 
 
 User.plugin(passportLocalMongoose);
 

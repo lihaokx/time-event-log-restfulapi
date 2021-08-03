@@ -39,7 +39,36 @@ const rowsLogSchema = new Schema({
                     required: true
                 }
             }
-        ]
+        ],
+        dashBoard: {
+            importance0: {
+                type: String,
+                default: ""
+            },
+            importanceN1: {
+                type: String,
+                default: ""
+            },
+            importanceP1: {
+                type: String,
+                default: ""
+            },
+            total: {
+                type: String,
+                default: ""
+            },
+            percent: {
+                importance0: {
+                    type: Number
+                },
+                importanceN1: {
+                    type: Number
+                },
+                importanceP1: {
+                    type: Number 
+                }
+            }
+        }
     }, {
     timestamps: true
 });
