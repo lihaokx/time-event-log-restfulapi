@@ -4,7 +4,8 @@ const app = express();
 
 //add the front end url here
 // Then, it will solve the problem of cors
-const whitelist = [ 'http://localhost:1624/time-event-log', "http://localhost:1624/"];
+// const whitelist = [ 'http://localhost:1624/time-event-log', "http://localhost:1624/"];
+const whitelist = ['http://haoliweb.com/time-event-log/', 'http://haoliweb.com/']
 var corsOptionsDelegate = (req, callback) => {
     var corsOptions;
     console.log(req.header('Origin'));
