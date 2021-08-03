@@ -16,12 +16,12 @@ router.route('/')
 })
 
 .post( authenticate.verifyUser, (req, res, next) => {
-    console.log("req.user.id: ", req.user._id)
+    // console.log("req.user.id: ", req.user._id)
     req.body.user = req.user._id;
     // console.log("req.body: ", req.body);
     rowsOfLog.findOne({user: req.user._id, date: req.body.date})
     .then((rowsOfADay) => {
-      console.log("rowsOfADay: ", rowsOfADay)
+      // console.log("rowsOfADay: ", rowsOfADay)
         if( rowsOfADay ==null ){
           rowsOfLog.create(req.body)
           .then((yourFirstRows) => {
@@ -39,7 +39,7 @@ router.route('/')
         else{
           rowsOfLog.findOneAndReplace({_id :rowsOfADay._id}, req.body, { "returnNewDocument": true})   
           .then((newRows)=>{
-            console.log("newRows: ", newRows)
+            // console.log("newRows: ", newRows)
             rowsOfLog.findOne(newRows._id)
             .then((row) =>{
               // console.log('row Created ', row);
