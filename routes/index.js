@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 const cors = require('./cors');
-const rowsOfLog = require('../models/rowsOflog');
+const rowsOfLog = require('../models/rowsOfLog');
 var authenticate = require('../authenticate');
 router.use(bodyParser.json());
 
